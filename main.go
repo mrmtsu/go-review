@@ -2,22 +2,22 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	fmt.Println("Hello World")
-	fmt.Println("Hello " + "World")
+	// var t, f bool = true, false
+	t, f := true, false
+	fmt.Printf("%T %v %t\n", t, 1, t)
+	fmt.Printf("%T %v %t\n", f, 2, f)
 
-	// キャスト
-	fmt.Println(string("Hello World"[0]))
-	var s string = "Hello World"
-	s = strings.Replace(s, "H", "X", 1)
-	fmt.Println(s)
+	fmt.Println(true && true)
+	fmt.Println(true && false)
+	fmt.Println(false && false)
 
-	// 含まれていればtrue
-	fmt.Println(strings.Contains(s, "World"))
+	fmt.Println(true || true)
+	fmt.Println(true || false)
+	fmt.Println(false || false)
 
-	fmt.Println(`Test
-	Test`)
+	fmt.Println(!true)
+	fmt.Println(!false)
 }
