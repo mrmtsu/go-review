@@ -1,31 +1,43 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func foo(params ...int) {
-	fmt.Println(len(params), params)
-	for _, param := range params {
-		fmt.Println(param)
+func by2(num int) string {
+	if num%2 == 0 {
+		return "ok"
+	} else {
+		return "no"
 	}
 }
 
 func main() {
-	foo()
-	foo(10, 20)
-	foo(10, 20, 30)
+	result := by2(10)
 
-	s := []int{1, 2, 3}
-	fmt.Println(s)
+	if result == "ok" {
+		fmt.Println("great")
+	}
+	fmt.Println(result)
 
-	foo(s...)
+	if result2 := by2(10); result2 == "ok" {
+		fmt.Println("greate 2")
+	}
+	/*
+		num := 6
+		if num%2 == 0 {
+			fmt.Println("by 2")
+		} else if num%3 == 0 {
+			fmt.Println("by 3")
+		} else {
+			fmt.Println("else")
+		}
+	*/
 
-	f := 1.11
-	fmt.Println(f)
-	a := int(f)
-	fmt.Println(a)
+	x, y := 10, 10
+	if x == 10 && y == 10 {
+		fmt.Println("&&")
+	}
 
-	m := map[string]int{"Mike": 20, "Nancy": 24, "Messi": 30}
-	fmt.Printf("%T %v\n", m, m)
+	if x == 10 || y == 10 {
+		fmt.Println("||")
+	}
 }
