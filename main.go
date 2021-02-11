@@ -2,33 +2,29 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"os"
 )
 
-func foo() {
-	defer fmt.Println("world foo")
-
-	fmt.Println("Hello foo")
+func LoggingSettings(logFile string) {
+	logfile, _ := os.Open(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	multiLogFile := io.MultiWriter(os.Stdout, logfile)
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+	log.SetOutput(multiLogFile)
 }
 
 func main() {
-	/*
-			foo()
-			defer fmt.Println("world")
+	LoggingSettings("test.log")
+	_, err := os.Open("fdafdsafa")
+	if err != nil {
+		log.Fatalln("Exit", err)
+	}
+	log.Println("logging!")
+	log.Printf("%T %v", "test", "test")
 
-			fmt.Println("Hello")
+	log.Fatalf("%T %v", "test", "test")
+	log.Fatalln("error!")
 
-
-		fmt.Println("run")
-		defer fmt.Println(1)
-		defer fmt.Println(2)
-		defer fmt.Println(3)
-		fmt.Println("seccess")
-	*/
-
-	file, _ := os.Open("./lesson.go")
-	defer file.Close()
-	data := make([]byte, 100)
-	file.Read(data)
-	fmt.Println(string(data))
+	fmt.Println("ok!")
 }
